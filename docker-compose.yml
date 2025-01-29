@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:8
+    image: nando10/db:1.0
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -15,8 +15,7 @@ services:
       - backend-network
 
   backend:
-    build:
-      context: ./backend
+    image: nando10/backend:1.0
     container_name: springboot-container
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/pruebadocker
@@ -31,8 +30,7 @@ services:
       - backend-network
 
   frontend:
-    build:
-      context: ./frontend
+    image: nando10/frontend:1.0
     container_name: apache-container
     ports:
       - "8081:80"
